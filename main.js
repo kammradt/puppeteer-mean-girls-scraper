@@ -23,6 +23,7 @@ const fs = require('fs');
   }
 
   generateInsert(urls)
+  saveAsJsonFile(urls)
 
   await browser.close();
 })();
@@ -31,4 +32,10 @@ function generateInsert(urls) {
   for (let url of urls) {
     fs.appendFileSync('inserts.txt', `INSERT INTO mean_girls (image_url) VALUES ("${url}"); \n`);
   }
+}
+
+function saveAsJsonFile(urls) {
+  fs.appendFileSync('json.json', JSON.stringify({
+    data: urls
+  }));
 }
